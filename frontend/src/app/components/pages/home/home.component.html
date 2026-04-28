@@ -1,0 +1,67 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <h1>大殷精品</h1>
+    <p>{{companyInfo.content || '专注于高品质产品研发、生产和销售的现代化企业'}}</p>
+    <a routerLink="/products" class="btn btn-primary">查看产品</a>
+  </div>
+</section>
+
+<!-- Culture Section -->
+<section class="culture-section" *ngIf="cultures.length > 0">
+  <div class="container">
+    <div class="page-header text-center">
+      <h2 class="page-title">企业文化</h2>
+      <p class="text-muted">了解我们的企业理念和价值观</p>
+    </div>
+    <div class="culture-grid">
+      <div class="culture-item" *ngFor="let culture of cultures">
+        <div class="icon">{{getCultureIcon(culture.type)}}</div>
+        <h3>{{culture.title}}</h3>
+        <p>{{culture.content}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section class="container" style="padding: 60px 0;">
+  <div class="page-header">
+    <h2 class="page-title">产品展示</h2>
+    <a routerLink="/products" class="btn btn-primary">查看全部</a>
+  </div>
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="'http://localhost:8080' + (product.mainImageUrl || '/assets/default-product.jpg')" [alt]="product.name"
+           (error)="$event.target.src = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20product%20photo%20industrial%20equipment&image_size=square'">
+      <div class="info">
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News Section -->
+<section style="background: #f8f9fa; padding: 60px 0;">
+  <div class="container">
+    <div class="page-header">
+      <h2 class="page-title">新闻动态</h2>
+      <a routerLink="/news" class="btn btn-primary">查看全部</a>
+    </div>
+    <div class="news-list">
+      <div class="news-item" *ngFor="let item of news">
+        <img [src]="'http://localhost:8080' + (item.imageUrl || '/assets/default-news.jpg')" [alt]="item.title"
+             (error)="$event.target.src = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=business%20news%20press%20conference&image_size=portrait_4_3'">
+        <div class="content">
+          <h3><a [routerLink]="['/news', item.id]">{{item.title}}</a></h3>
+          <div class="meta">
+            <span>{{item.publishDate}}</span>
+            <span style="margin-left: 20px;">阅读量：{{item.views}}</span>
+          </div>
+          <p class="summary">{{item.summary}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

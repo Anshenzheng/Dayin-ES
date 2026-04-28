@@ -1,0 +1,99 @@
+<div class="container" style="padding: 40px 0;">
+  <div class="page-header">
+    <h1 class="page-title">联系我们</h1>
+    <p class="text-muted">如有任何问题或建议，请随时联系我们</p>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-info">
+      <h3>联系方式</h3>
+
+      <div class="contact-info-item">
+        <span class="label">公司地址</span>
+        <span>{{contactInfo.address || '上海市浦东新区张江高科技园区'}}</span>
+      </div>
+
+      <div class="contact-info-item">
+        <span class="label">联系电话</span>
+        <span>{{contactInfo.phone || '400-888-8888'}}</span>
+      </div>
+
+      <div *ngIf="contactInfo.fax" class="contact-info-item">
+        <span class="label">传真</span>
+        <span>{{contactInfo.fax}}</span>
+      </div>
+
+      <div class="contact-info-item">
+        <span class="label">电子邮箱</span>
+        <span>{{contactInfo.email || 'contact@dayin.com'}}</span>
+      </div>
+
+      <div *ngIf="contactInfo.workTime" class="contact-info-item">
+        <span class="label">工作时间</span>
+        <span>{{contactInfo.workTime}}</span>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>在线留言</h3>
+
+      <div *ngIf="submitSuccess" class="alert alert-success">
+        留言提交成功！我们会尽快与您联系。
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-error">
+        {{errorMessage}}
+      </div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>姓名 <span style="color: red;">*</span></label>
+          <input type="text" formControlName="name" class="form-control"
+                 [class.form-control]="true"
+                 [class.is-invalid]="f['name'].invalid && f['name'].touched">
+          <div *ngIf="f['name'].invalid && f['name'].touched" style="color: #dc3545; font-size: 12px; margin-top: 5px;">
+            请输入姓名
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div class="form-group">
+            <label>电话</label>
+            <input type="tel" formControlName="phone" class="form-control"
+                   [class.is-invalid]="f['phone'].invalid && f['phone'].touched">
+            <div *ngIf="f['phone'].invalid && f['phone'].touched" style="color: #dc3545; font-size: 12px; margin-top: 5px;">
+              请输入正确的手机号码
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>邮箱</label>
+            <input type="email" formControlName="email" class="form-control"
+                   [class.is-invalid]="f['email'].invalid && f['email'].touched">
+            <div *ngIf="f['email'].invalid && f['email'].touched" style="color: #dc3545; font-size: 12px; margin-top: 5px;">
+              请输入正确的邮箱地址
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>主题</label>
+          <input type="text" formControlName="subject" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>留言内容 <span style="color: red;">*</span></label>
+          <textarea formControlName="message" class="form-control" rows="5"
+                    [class.is-invalid]="f['message'].invalid && f['message'].touched"></textarea>
+          <div *ngIf="f['message'].invalid && f['message'].touched" style="color: #dc3545; font-size: 12px; margin-top: 5px;">
+            请输入留言内容
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="submitting || contactForm.invalid">
+          {{submitting ? '提交中...' : '提交留言'}}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

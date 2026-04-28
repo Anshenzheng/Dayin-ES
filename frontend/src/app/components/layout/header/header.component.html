@@ -1,0 +1,30 @@
+<header class="header">
+  <div class="container">
+    <a routerLink="/" class="logo">大殷精品</a>
+    <nav>
+      <ul class="nav-menu">
+        <li>
+          <a routerLink="/" [class.active]="isActive('/')">首页</a>
+        </li>
+        <li>
+          <a routerLink="/about" [class.active]="isActive('/about')">公司介绍</a>
+        </li>
+        <li>
+          <a routerLink="/products" [class.active]="isActive('/products') || router.url.startsWith('/products/')">产品展示</a>
+        </li>
+        <li>
+          <a routerLink="/scenarios" [class.active]="isActive('/scenarios')">应用场景</a>
+        </li>
+        <li>
+          <a routerLink="/news" [class.active]="isActive('/news') || router.url.startsWith('/news/')">新闻动态</a>
+        </li>
+        <li>
+          <a routerLink="/contact" [class.active]="isActive('/contact')">联系我们</a>
+        </li>
+        <li *ngIf="isLoggedIn">
+          <a routerLink="/admin">后台管理</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

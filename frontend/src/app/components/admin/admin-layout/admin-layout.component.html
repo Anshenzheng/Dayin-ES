@@ -1,0 +1,71 @@
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <h3>大殷精品</h3>
+    <ul class="admin-nav">
+      <li>
+        <a routerLink="/admin" [class.active]="isActive('')">
+          控制台
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/company" [class.active]="isActive('/company')">
+          公司介绍
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/culture" [class.active]="isActive('/culture')">
+          企业文化
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/honors" [class.active]="isActive('/honors')">
+          荣誉资质
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/categories" [class.active]="isActive('/categories')">
+          产品分类
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/products" [class.active]="isActive('/products')">
+          产品管理
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/scenarios" [class.active]="isActive('/scenarios')">
+          应用场景
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/news" [class.active]="isActive('/news')">
+          新闻动态
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/contact-info" [class.active]="isActive('/contact-info')">
+          联系方式
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/messages" [class.active]="isActive('/messages')">
+          留言管理
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="admin-content">
+    <div class="admin-header">
+      <div>
+        <span>欢迎，{{currentUser?.name || currentUser?.username}}</span>
+      </div>
+      <div>
+        <a routerLink="/" target="_blank" style="margin-right: 20px;">查看网站</a>
+        <a href="javascript:void(0)" (click)="logout()" style="color: #dc3545;">退出登录</a>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </main>
+</div>

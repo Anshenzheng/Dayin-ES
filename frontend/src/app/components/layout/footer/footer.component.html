@@ -1,0 +1,33 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>大殷精品</h4>
+        <p>专注于高品质产品研发、生产和销售的现代化企业，始终坚持"品质第一、客户至上"的经营理念。</p>
+      </div>
+      <div class="footer-section">
+        <h4>快速链接</h4>
+        <a routerLink="/about">公司介绍</a>
+        <a routerLink="/products">产品展示</a>
+        <a routerLink="/news">新闻动态</a>
+        <a routerLink="/contact">联系我们</a>
+      </div>
+      <div class="footer-section">
+        <h4>产品分类</h4>
+        <a routerLink="/products">智能设备</a>
+        <a routerLink="/products">家居用品</a>
+        <a routerLink="/products">办公用品</a>
+      </div>
+      <div class="footer-section">
+        <h4>联系方式</h4>
+        <p *ngIf="contactInfo.address">地址：{{contactInfo.address}}</p>
+        <p *ngIf="contactInfo.phone">电话：{{contactInfo.phone}}</p>
+        <p *ngIf="contactInfo.email">邮箱：{{contactInfo.email}}</p>
+        <p *ngIf="contactInfo.workTime">工作时间：{{contactInfo.workTime}}</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 大殷精品 版权所有 | 沪ICP备XXXXXXXX号</p>
+    </div>
+  </div>
+</footer>

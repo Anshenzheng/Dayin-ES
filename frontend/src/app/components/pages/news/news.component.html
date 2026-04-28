@@ -1,0 +1,28 @@
+<div class="container" style="padding: 40px 0;">
+  <div class="page-header">
+    <h1 class="page-title">新闻动态</h1>
+    <p class="text-muted">了解公司最新资讯和行业动态</p>
+  </div>
+
+  <div class="news-list" *ngIf="news.length > 0; else noNews">
+    <div class="news-item" *ngFor="let item of news">
+      <img [src]="getImageUrl(item)" [alt]="item.title"
+           (error)="$event.target.src = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=business%20news%20article%20header&image_size=portrait_4_3'">
+      <div class="content">
+        <h3><a [routerLink]="['/news', item.id]">{{item.title}}</a></h3>
+        <div class="meta">
+          <span *ngIf="item.publishDate">发布日期：{{item.publishDate}}</span>
+          <span style="margin-left: 20px;">阅读量：{{item.views || 0}}</span>
+        </div>
+        <p class="summary">{{item.summary || item.content?.substring(0, 150)}}...</p>
+        <a [routerLink]="['/news', item.id]" style="color: #1a5fb4; text-decoration: none;">阅读更多 →</a>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noNews>
+    <div class="empty-state">
+      <p>暂无新闻</p>
+    </div>
+  </ng-template>
+</div>
