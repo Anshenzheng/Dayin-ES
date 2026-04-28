@@ -1,0 +1,40 @@
+<div class="container" style="padding: 40px 0;">
+  <div class="page-header">
+    <h1 class="page-title">产品展示</h1>
+  </div>
+
+  <div class="card" style="margin-bottom: 30px;">
+    <div class="card-body">
+      <h4 style="margin-bottom: 15px;">产品分类</h4>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn" [class.btn-primary]="!selectedCategory" [class.btn-secondary]="selectedCategory"
+                (click)="selectCategory(null)">
+          全部产品
+        </button>
+        <button *ngFor="let category of categories" class="btn"
+                [class.btn-primary]="selectedCategory === category.id"
+                [class.btn-secondary]="selectedCategory !== category.id"
+                (click)="selectCategory(category.id)">
+          {{category.name}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-grid" *ngIf="products.length > 0; else noProducts">
+    <div class="product-card" *ngFor="let product of products" [routerLink]="['/products', product.id]">
+      <img [src]="'http://localhost:8080' + (product.mainImageUrl || '/assets/default-product.jpg')" [alt]="product.name"
+           (error)="$event.target.src = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20industrial%20product%20photography&image_size=square'">
+      <div class="info">
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noProducts>
+    <div class="empty-state">
+      <p>暂无产品</p>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,31 @@
+<div class="container" style="padding: 40px 0;">
+  <div class="page-header">
+    <a routerLink="/news" style="color: #1a5fb4; text-decoration: none; display: inline-block; margin-bottom: 15px;">
+      ← 返回新闻列表
+    </a>
+  </div>
+
+  <div class="card" *ngIf="news.title">
+    <div class="card-body">
+      <h1 style="margin-bottom: 20px; font-size: 28px;">{{news.title}}</h1>
+
+      <div class="meta" style="margin-bottom: 30px; color: #666; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+        <span *ngIf="news.publishDate">发布日期：{{news.publishDate}}</span>
+        <span style="margin-left: 20px;">阅读量：{{news.views || 0}}</span>
+      </div>
+
+      <div *ngIf="news.imageUrl" style="margin-bottom: 30px; text-align: center;">
+        <img [src]="getImageUrl()" style="max-width: 100%; max-height: 400px; border-radius: 8px;"
+             (error)="$event.target.src = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=business%20news%20article%20illustration&image_size=landscape_4_3'">
+      </div>
+
+      <div style="line-height: 2; font-size: 16px; color: #333; white-space: pre-wrap;">
+        {{news.content}}
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!news.title">
+    <p>新闻不存在</p>
+  </div>
+</div>

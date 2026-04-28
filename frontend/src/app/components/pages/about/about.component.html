@@ -1,0 +1,38 @@
+<div class="container" style="padding: 40px 0;">
+  <div class="page-header">
+    <h1 class="page-title">公司介绍</h1>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2>{{companyInfo.title || '大殷精品'}}</h2>
+      <p style="margin-bottom: 20px; line-height: 1.8; color: #666;">
+        {{companyInfo.content || '大殷精品是一家专注于高品质产品研发、生产和销售的现代化企业。公司成立以来，始终坚持"品质第一、客户至上"的经营理念，致力于为客户提供最优质的产品和服务。'}}
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <h2 class="page-title" style="margin-bottom: 30px;">企业文化</h2>
+    <div class="culture-grid">
+      <div class="culture-item" *ngFor="let culture of cultures">
+        <div class="icon">{{getCultureIcon(culture.type)}}</div>
+        <h3>{{culture.title}}</h3>
+        <p>{{culture.content}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="honors.length > 0" style="margin-top: 40px;">
+    <h2 class="page-title" style="margin-bottom: 30px;">荣誉资质</h2>
+    <div class="honors-grid">
+      <div class="honor-card" *ngFor="let honor of honors">
+        <img [src]="'http://localhost:8080' + (honor.imageUrl || '/assets/default-honor.jpg')" [alt]="honor.title"
+             (error)="$event.target.src = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=certificate%20award%20honor%20plaque&image_size=square'">
+        <h3>{{honor.title}}</h3>
+        <p>{{honor.description}}</p>
+        <p class="text-muted" *ngIf="honor.issueDate">颁发日期：{{honor.issueDate}}</p>
+      </div>
+    </div>
+  </div>
+</div>

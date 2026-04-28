@@ -1,0 +1,23 @@
+<div class="container" style="padding: 40px 0;">
+  <div class="page-header">
+    <h1 class="page-title">应用场景</h1>
+    <p class="text-muted">了解我们的产品在各个行业的应用案例</p>
+  </div>
+
+  <div class="product-grid" *ngIf="scenarios.length > 0; else noScenarios">
+    <div class="product-card" *ngFor="let scenario of scenarios">
+      <img [src]="getImageUrl(scenario)" [alt]="scenario.title"
+           (error)="$event.target.src = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=industrial%20application%20scenario%20manufacturing%20factory&image_size=square'">
+      <div class="info">
+        <h3>{{scenario.title}}</h3>
+        <p>{{scenario.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noScenarios>
+    <div class="empty-state">
+      <p>暂无应用场景</p>
+    </div>
+  </ng-template>
+</div>
