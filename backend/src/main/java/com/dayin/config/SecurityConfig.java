@@ -31,14 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
-    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean

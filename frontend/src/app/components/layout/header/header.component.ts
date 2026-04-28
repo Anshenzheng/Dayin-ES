@@ -23,7 +23,7 @@ export class HeaderComponent {
   }
 
   isActive(url: string): boolean {
-    return this.router.url === url;
+    return this.router.url === url || this.router.url.startsWith(url + '/');
   }
 
   logout(): void {
