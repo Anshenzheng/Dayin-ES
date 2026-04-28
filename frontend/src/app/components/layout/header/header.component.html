@@ -10,13 +10,13 @@
           <a routerLink="/about" [class.active]="isActive('/about')">公司介绍</a>
         </li>
         <li>
-          <a routerLink="/products" [class.active]="isActive('/products') || router.url.startsWith('/products/')">产品展示</a>
+          <a routerLink="/products" [class.active]="isActive('/products')">产品展示</a>
         </li>
         <li>
           <a routerLink="/scenarios" [class.active]="isActive('/scenarios')">应用场景</a>
         </li>
         <li>
-          <a routerLink="/news" [class.active]="isActive('/news') || router.url.startsWith('/news/')">新闻动态</a>
+          <a routerLink="/news" [class.active]="isActive('/news')">新闻动态</a>
         </li>
         <li>
           <a routerLink="/contact" [class.active]="isActive('/contact')">联系我们</a>
